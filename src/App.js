@@ -8,7 +8,7 @@ class App extends React.Component {
 		this.state = {
 			value: null,
 			todos : [
-				{id: 1, completed: false, title: 'Buy bread'},
+				{id: 1, completed: true, title: 'Buy bread'},
 				{id: 2, completed: false, title: 'Buy milk'},
 				{id: 3, completed: false, title: 'Buy beef'},
 			]

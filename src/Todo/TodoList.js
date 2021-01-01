@@ -3,7 +3,6 @@ import TodoItem from './TodoItem';
 
 
 class TodoList extends React.Component {
-
 	
 	render() {
 		const styles = {
@@ -17,7 +16,12 @@ class TodoList extends React.Component {
 		return (
 		  <ul style={styles.ul}>
 		  	{this.props.todos.map((todo, index) => {
-		  		return <TodoItem todo={todo} key={todo.id} index={index} />
+		  		return <TodoItem 
+		  			todo={todo} 
+		  			key={todo.id} 
+		  			index={index} 
+		  			onChange={this.props.onToggle}
+		  			/>
 		  	})}
 		  </ul>
 		);

@@ -4,6 +4,9 @@ import React from 'react';
 class TodoItem extends React.Component {
 
 	render() {
+		// console.log(this.props.todo);
+		// console.log('complete', this.props.todo.completed);
+
 		const styles = {
 			li: {
 				display: 'flex',
@@ -18,11 +21,15 @@ class TodoItem extends React.Component {
 				marginRight: '1rem',
 			},
 		};
-
 		return (
 			<li style={styles.li}>
-				<span>
-					<input style={styles.input} type="checkbox"/>
+				<span className={`${this.props.todo.completed && 'done'}`}>
+					<input
+						type="checkbox"
+						style={styles.input}
+						checkbox={this.props.todo.completed.toString()}
+						onChange={() => this.props.onChange(this.props.todo.id)}
+					/>
 					<strong>{this.props.index + 1}</strong>
 					&nbsp;{this.props.todo.title}
 				</span>

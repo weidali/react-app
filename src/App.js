@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoList from './Todo/TodoList';
 import AddTodo from './Todo/AddTodo';
+import Loader from './Loader';
 import Context from './context';
 
 
@@ -8,12 +9,13 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			todos : [
+			todosOld : [
 				{id: 1, completed: true, title: 'Buy bread'},
 				{id: 2, completed: false, title: 'Buy milk'},
 				{id: 3, completed: false, title: 'Buy beef'},
 			],
 			todos : [],
+			loading: true,
 		};
 		this.removeTodo = this.removeTodo.bind(this);
 	}
@@ -24,6 +26,7 @@ class App extends React.Component {
 			.then(todos => {
 				setTimeout(() => {
 					this.setState({todos});
+					this.setState({loading: false});
 				}, 3000);
 			});
 	}
@@ -38,7 +41,6 @@ class App extends React.Component {
 	}
 
 	removeTodo = (id) => {
-		console.log('ok', id);
 		this.setState({
 			todos: this.state.todos.filter(todo => todo.id !== id),
 		});
@@ -64,7 +66,7 @@ class App extends React.Component {
 							todos={this.state.todos}
 							onToggle={this.toggleTodo}
 						/>
-						: <p>No Todos!</p>
+						: this.state.loading ? <Loader /> : <p>No Todos!</p> 
 					}					
 				</div>
 			</Context.Provider>

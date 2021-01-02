@@ -38,12 +38,13 @@ class App extends React.Component {
 			<Context.Provider value={{ removeTodo: this.removeTodo }}>
 				<div className="wrapper">
 					<h1>My ToDo</h1>
-
-					<TodoList
-						todos={this.state.todos}
-						onToggle={this.toggleTodo}
-					/>
-					
+					{this.state.todos.length 
+						? <TodoList
+							todos={this.state.todos}
+							onToggle={this.toggleTodo}
+						/>
+						: <p>No Todos!</p>
+					}					
 				</div>
 			</Context.Provider>
 

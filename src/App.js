@@ -12,9 +12,20 @@ class App extends React.Component {
 				{id: 1, completed: true, title: 'Buy bread'},
 				{id: 2, completed: false, title: 'Buy milk'},
 				{id: 3, completed: false, title: 'Buy beef'},
-			]
+			],
+			todos : [],
 		};
 		this.removeTodo = this.removeTodo.bind(this);
+	}
+
+	componentDidMount() {
+		fetch('https://jsonplaceholder.typicode.com/todos?_limit=10')
+			.then(response => response.json())
+			.then(todos => {
+				setTimeout(() => {
+					this.setState({todos});
+				}, 3000);
+			});
 	}
 
 	toggleTodo = (id) => {

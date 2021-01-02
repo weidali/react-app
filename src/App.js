@@ -1,5 +1,6 @@
 import React from 'react';
 import TodoList from './Todo/TodoList';
+import AddTodo from './Todo/AddTodo';
 import Context from './context';
 
 
@@ -7,7 +8,6 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			value: null,
 			todos : [
 				{id: 1, completed: true, title: 'Buy bread'},
 				{id: 2, completed: false, title: 'Buy milk'},
@@ -33,11 +33,21 @@ class App extends React.Component {
 		});
 	}
 
+	addTodo = (title) => {
+		let newList = this.state.todos.concat({
+			id: this.state.todos.length + 1,
+			completed: false,
+			title: title
+		});
+		this.setState({todos: newList});
+	}
+
 	render() {
 		return (
 			<Context.Provider value={{ removeTodo: this.removeTodo }}>
 				<div className="wrapper">
 					<h1>My ToDo</h1>
+					<AddTodo onCreate={this.addTodo}/>
 					{this.state.todos.length 
 						? <TodoList
 							todos={this.state.todos}

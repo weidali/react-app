@@ -1,5 +1,6 @@
 import React from 'react';
 import TodoList from './Todo/TodoList';
+import Context from './context';
 
 
 class App extends React.Component {
@@ -13,6 +14,7 @@ class App extends React.Component {
 				{id: 3, completed: false, title: 'Buy beef'},
 			]
 		};
+		this.removeTodo = this.removeTodo.bind(this);
 	}
 
 	toggleTodo = (id) => {
@@ -24,17 +26,27 @@ class App extends React.Component {
 		});
 	}
 
+	removeTodo = (id) => {
+		console.log('ok', id);
+		this.setState({
+			todos: this.state.todos.filter(todo => todo.id !== id),
+		});
+	}
+
 	render() {
 		return (
-			<div className="wrapper">
-				<h1>Hello</h1>
+			<Context.Provider value={{ removeTodo: this.removeTodo }}>
+				<div className="wrapper">
+					<h1>My ToDo</h1>
 
-				<TodoList
-					todos={this.state.todos}
-					onToggle={this.toggleTodo}
-				/>
-				
-			</div>
+					<TodoList
+						todos={this.state.todos}
+						onToggle={this.toggleTodo}
+					/>
+					
+				</div>
+			</Context.Provider>
+
 		);
 	}
 }

@@ -22,7 +22,8 @@ class TodoList extends React.Component {
 		  			index={index} 
 		  			onChange={this.props.onToggle}
 		  			/>
-		  	})}
+		  		}
+		  	)}
 		  </ul>
 		);
 	}

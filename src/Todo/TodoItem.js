@@ -1,7 +1,13 @@
 import React from 'react';
+import Context from '../context';
 
 
 class TodoItem extends React.Component {
+	// static context = Context;
+	removeItem(id) {
+		let {removeTodo} = this.context;
+        removeTodo(id);
+    }
 
 	render() {
 		// console.log(this.props.todo);
@@ -33,10 +39,11 @@ class TodoItem extends React.Component {
 					<strong>{this.props.index + 1}</strong>
 					&nbsp;{this.props.todo.title}
 				</span>
-				<button className="rm">&times;</button>
+				<button className="rm" onClick={() => { this.removeItem(this.props.todo.id)}}>&times;</button>
 			</li>
 		);
 	}
 }
+TodoItem.contextType = Context;
 
 export default TodoItem;

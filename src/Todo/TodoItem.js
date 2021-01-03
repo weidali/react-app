@@ -39,7 +39,13 @@ class TodoItem extends React.Component {
 					<strong>{this.props.index + 1}</strong>
 					&nbsp;{this.props.todo.title}
 				</span>
-				<button className="rm" onClick={() => { this.removeItem(this.props.todo.id)}}>&times;</button>
+				<button
+					className="close"
+					onClick={() => { this.removeItem(this.props.todo.id)}}
+					aria-label="Close"
+				>
+					<span aria-hidden="true">&times;</span>
+				</button>
 			</li>
 		);
 	}

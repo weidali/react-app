@@ -4,6 +4,7 @@ import AddTodo from './Todo/AddTodo';
 import Loader from './Loader';
 import About from './components/About';
 import NavBar from './components/NavBar';
+import Alert from './components/Alert';
 import Context from './context';
 import { 
 	BrowserRouter,
@@ -67,6 +68,7 @@ class App extends React.Component {
 				<Context.Provider value={{ removeTodo: this.removeTodo }}>
 					<NavBar />
 					<div className="container pt-4">
+						<Alert />
 						<Switch>
 
 							<Route path={'/'} exact>

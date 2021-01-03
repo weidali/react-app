@@ -10,7 +10,7 @@ class NavBar extends React.Component {
 						<span className="navbar-toggler-icon"></span>
 					</button>
 					<NavLink className="navbar-brand" to="/">ToDo</NavLink>
-					<div class="collapse navbar-collapse" id="navbarNavDropdown">
+					<div className="collapse navbar-collapse" id="navbarNavDropdown">
 						<ul className="navbar-nav">
 							<li className="nav-item">
 								<NavLink 

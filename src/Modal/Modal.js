@@ -24,7 +24,7 @@ class Modal extends React.Component {
 	render() {
 		return (
 			<>
-			<button style={{float: 'right'}} 
+			<button className="btn btn-secondary btn-sm"
 				onClick={() => this.setState({isOpen: true})}>Open modal</button>
 			
 			{this.state.isOpen && (
@@ -32,7 +32,9 @@ class Modal extends React.Component {
 					<div className="modal-body">
 						<h1>Modal title</h1>
 						<p>This is modal text...</p>
-						<button onClick={() => this.setState({isOpen: false})}>Close</button>
+						<button
+							className="btn btn-secondary btn-sm" 
+							onClick={() => this.setState({isOpen: false})}>Close</button>
 					</div>
 				</div>
 			)}			

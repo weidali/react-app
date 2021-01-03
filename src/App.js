@@ -2,6 +2,7 @@ import React from 'react';
 import TodoList from './Todo/TodoList';
 import AddTodo from './Todo/AddTodo';
 import Loader from './Loader';
+import Modal from './Modal/Modal';
 import Context from './context';
 
 
@@ -60,6 +61,7 @@ class App extends React.Component {
 			<Context.Provider value={{ removeTodo: this.removeTodo }}>
 				<div className="wrapper">
 					<h1>My ToDo</h1>
+					<Modal />
 					<AddTodo onCreate={this.addTodo}/>
 					{this.state.todos.length 
 						? <TodoList

@@ -2,7 +2,13 @@ import React from 'react';
 import TodoList from './Todo/TodoList';
 import AddTodo from './Todo/AddTodo';
 import Loader from './Loader';
+import About from './components/About';
+import NavBar from './components/NavBar';
 import Context from './context';
+import { 
+	BrowserRouter,
+	Route,
+	Switch } from "react-router-dom";
 
 
 class App extends React.Component {
@@ -57,19 +63,31 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<Context.Provider value={{ removeTodo: this.removeTodo }}>
-				<div className="wrapper">
-					<h1>My ToDo</h1>
-					<AddTodo onCreate={this.addTodo}/>
-					{this.state.todos.length 
-						? <TodoList
-							todos={this.state.todos}
-							onToggle={this.toggleTodo}
-						/>
-						: this.state.loading ? <Loader /> : <p>No Todos!</p> 
-					}					
-				</div>
-			</Context.Provider>
+			<BrowserRouter>
+				<Context.Provider value={{ removeTodo: this.removeTodo }}>
+					<NavBar />
+					<div className="container pt-4">
+						<Switch>
+
+							<Route path={'/'} exact>
+								<h1>My ToDo</h1>
+								<AddTodo onCreate={this.addTodo}/>
+								{this.state.todos.length 
+									? <TodoList
+										todos={this.state.todos}
+										onToggle={this.toggleTodo}
+									/>
+									: this.state.loading ? <Loader /> : <p>No Todos!</p> 
+								}		
+							</Route>
+							<Route path={'/about'} component={About}/>
+						</Switch>
+									
+					</div>
+				</Context.Provider>
+
+			</BrowserRouter>
+			
 
 		);
 	}

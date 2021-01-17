@@ -10,7 +10,13 @@ import Context from './context';
 import { 
 	BrowserRouter,
 	Route,
-	Switch } from "react-router-dom";
+	Switch 
+} from "react-router-dom";
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import rootReducer from './store/reducers';
+
+const store = createStore(rootReducer);
 
 
 class App extends React.Component {
@@ -66,34 +72,33 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<BrowserRouter>
-				<Context.Provider value={{ removeTodo: this.removeTodo }}>
-					<NavBar />
-					<div className="container pt-4">
-						<Alert />
-						<Switch>
+			<Provider store={store} >
+				<BrowserRouter>
+					<Context.Provider value={{ removeTodo: this.removeTodo }}>
+						<NavBar />
+						<div className="container pt-4">
+							<Alert />
+							<Switch>
 
-							<Route path={'/'} exact>
-								<h1>My ToDo List</h1>
-								<AddTodo onCreate={this.addTodo}/>
-								{this.state.todos.length 
-									? <TodoList
-										todos={this.state.todos}
-										onToggle={this.toggleTodo}
-									/>
-									: this.state.loading ? <Loader /> : <p>No Todos!</p> 
-								}		
-							</Route>
-							<Route path={'/about'} component={About}/>
-							<Route path={'/login'} component={Login}/>
-						</Switch>
-									
-					</div>
-				</Context.Provider>
-
-			</BrowserRouter>
-			
-
+								<Route path={'/'} exact>
+									<h1>My ToDo List</h1>
+									<AddTodo onCreate={this.addTodo}/>
+									{this.state.todos.length 
+										? <TodoList
+											todos={this.state.todos}
+											onToggle={this.toggleTodo}
+										/>
+										: this.state.loading ? <Loader /> : <p>No Todos!</p> 
+									}		
+								</Route>
+								<Route path={'/about'} component={About}/>
+								<Route path={'/login'} component={Login}/>
+							</Switch>
+										
+						</div>
+					</Context.Provider>
+				</BrowserRouter>			
+			</Provider>
 		);
 	}
 }

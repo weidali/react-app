@@ -1,10 +1,10 @@
 import React from 'react';
 import TodoList from './Todo/TodoList';
 import AddTodo from './Todo/AddTodo';
-import Loader from './Loader';
-import About from './components/About';
-import NavBar from './components/NavBar';
-import Alert from './components/Alert';
+import Loader from './components/Loader/Loader';
+import About from './components/About/About';
+import NavBar from './components/NavBar/NavBar';
+import Alert from './components/Alert/Alert';
 import Context from './context';
 import { 
 	BrowserRouter,
@@ -31,10 +31,11 @@ class App extends React.Component {
 		fetch('https://jsonplaceholder.typicode.com/todos?_limit=10')
 			.then(response => response.json())
 			.then(todos => {
+				todos = this.state.todos.concat(todos, this.state.todosOld);
 				setTimeout(() => {
 					this.setState({todos});
 					this.setState({loading: false});
-				}, 3000);
+				}, 1100);
 			});
 	}
 
@@ -72,7 +73,7 @@ class App extends React.Component {
 						<Switch>
 
 							<Route path={'/'} exact>
-								<h1>My ToDo</h1>
+								<h1>My ToDo List</h1>
 								<AddTodo onCreate={this.addTodo}/>
 								{this.state.todos.length 
 									? <TodoList

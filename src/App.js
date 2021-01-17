@@ -2,6 +2,7 @@ import React from 'react';
 import TodoList from './Todo/TodoList';
 import AddTodo from './Todo/AddTodo';
 import Loader from './components/Loader/Loader';
+import Login from './components/Auth/Login';
 import About from './components/About/About';
 import NavBar from './components/NavBar/NavBar';
 import Alert from './components/Alert/Alert';
@@ -17,9 +18,9 @@ class App extends React.Component {
 		super(props);
 		this.state = {
 			todosOld : [
-				{id: 1, completed: true, title: 'Buy bread'},
-				{id: 2, completed: false, title: 'Buy milk'},
-				{id: 3, completed: false, title: 'Buy beef'},
+				{id: 10801, completed: true, title: 'Buy bread'},
+				{id: 10802, completed: false, title: 'Buy milk'},
+				{id: 10803, completed: false, title: 'Buy beef'},
 			],
 			todos : [],
 			loading: true,
@@ -31,7 +32,7 @@ class App extends React.Component {
 		fetch('https://jsonplaceholder.typicode.com/todos?_limit=10')
 			.then(response => response.json())
 			.then(todos => {
-				todos = this.state.todos.concat(todos, this.state.todosOld);
+				todos = this.state.todos.concat(this.state.todosOld, todos);
 				setTimeout(() => {
 					this.setState({todos});
 					this.setState({loading: false});
@@ -84,6 +85,7 @@ class App extends React.Component {
 								}		
 							</Route>
 							<Route path={'/about'} component={About}/>
+							<Route path={'/login'} component={Login}/>
 						</Switch>
 									
 					</div>

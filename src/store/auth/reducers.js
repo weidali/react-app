@@ -6,6 +6,7 @@ const defaultState = {
 };
 
 export const authReducer = (state = defaultState, action) => {
+	console.log(state);
 	switch (action.type) {
 		case AUTH_CHANGE_EMAIL_TEXT:
 			return {
@@ -18,6 +19,8 @@ export const authReducer = (state = defaultState, action) => {
 				...state,
 				password: action.payload
 			};
+		// default:
+		// 	console.log("Sorry, we are out of " + action.type + ".");
 	}
 
 	return state;

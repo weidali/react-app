@@ -11,6 +11,7 @@ const defaultState = {
 };
 
 export const registrationReducer = (state = defaultState, action) => {
+	console.log(state);
 	switch (action.type) {
 		case REGISTRATION_CHANGE_EMAIL_TEXT:
 			return {
@@ -21,14 +22,16 @@ export const registrationReducer = (state = defaultState, action) => {
 		case REGISTRATION_CHANGE_PASSWORD_TEXT:
 			return {
 				...state,
-				email: action.payload
+				password: action.payload
 			};
 
 		case REGISTRATION_CHANGE_REPEAT_PASSWORD_TEXT:
 			return {
 				...state,
-				email: action.payload
+				repeatPassword: action.payload
 			};
+		// default:
+		// 	console.log("Sorry, we are out of " + action.type + ".");
 	}
 
 	return state;

@@ -1,8 +1,24 @@
 import React from 'react';
 
 export default class Auth extends React.Component {
+	constructor(props) {
+		super(props);
+		this.onEmailChange = this.onEmailChange.bind(this);
+		this.onPasswordChange = this.onPasswordChange.bind(this);
+	}
+
+	onEmailChange(event) {
+		this.props.setEmailText(event.target.value);
+	}
+
+	onPasswordChange(event) {
+		this.props.setPasswordText(event.target.value);
+	}
 
 	render() {
+		const {email} = this.props;
+		const {password} = this.props;
+
 		return (
 			<form className="form-signin">
 				<div className="text-center mb-4">
@@ -10,16 +26,25 @@ export default class Auth extends React.Component {
 				</div>
 				<div className="mb-2 form-label-group">
 					<input 
-						type="email"
-						id="inputEmail" 
+						type="text"
+						name="login"
 						className="form-control" 
 						placeholder="Email address" 
-						required 
+						autoComplete="off"
+						value={email}
+						onChange={this.onEmailChange}
 						autoFocus 
 					/>
 				</div>
 				<div className="mb-2 form-label-group">
-					<input type="password" id="inputPassword" className="form-control" placeholder="Password" required />
+					<input 
+						type="password" 
+						name="password" 
+						className="form-control" 
+						placeholder="Password" 
+						value={password}
+						onChange={this.onPasswordChange} 
+					/>
 				</div>
 				<div className="checkbox mb-3">
 					<label>

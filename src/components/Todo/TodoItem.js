@@ -1,5 +1,5 @@
 import React from 'react';
-import Context from '../context';
+import Context from '../../context';
 
 
 class TodoItem extends React.Component {
